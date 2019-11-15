@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+
+  php:
+    working_dir: /app
+    build: .
+    volumes:
+      - ./:/app
+    ports:
+      - "8888:8888"
+    command: php artisan serve --host="0.0.0.0" --port="8888"
+  
+  mongodb:
+    image: mongo:latest
+    ports:
+        - 27017:27017
+    volumes:
+        - ./docker/storage/mongodb:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
