@@ -93,7 +93,7 @@ return [
         
         'mongodb' => [
             'driver'   => 'mongodb',
-            'host'     => 'localhost',
+            'host'     => 'mongodb',
             'port'     => 27017,
             'username' => 'root',
             'password' => 'root',

@@ -11,6 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('items');
-});
+
+
+Route::get('/', 'ItemController@index')->name('item');
+Route::put('/item', 'ItemController@update')->name('updateItem');
