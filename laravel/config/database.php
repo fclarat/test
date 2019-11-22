@@ -97,7 +97,7 @@ return [
             'port'     => 27017,
             'username' => 'root',
             'password' => 'root',
-            'database' => 'database',
+            'database' => 'test',
             'options' => array(
                 'db' => 'admin' // sets the authentication database required by mongo 3
             )
