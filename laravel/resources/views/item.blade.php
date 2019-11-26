@@ -21,7 +21,7 @@
     <nav>
       <ul>
         <li><a href="#">Listado</a></li>
-        <li><a href="#">Agregar</a></li>
+        <li><a href="{{url('newitem')}}">Agregar</a></li>
       </ul>
     </nav>
   </header>
@@ -36,9 +36,11 @@
         {{-- iterate between all the elements, to make the list --}}
         @foreach ($items as $item)
           <article class="one_quarter" order="{{$item->order}}" idItem={{$item->id}}>
-            <figure><img src="{{ asset('images/demo/215x315.gif') }}" width="200" height="150" alt="">
-              <figcaption>{{$item->image}}</figcaption>
+            <figure>
+                <button class="delete" >X</button>
+              <img src="{{ asset('images/' . $item->image) }}" width="200" height="150" alt="">
               <figcaption>{{$item->text}}</figcaption>
+              <figcaption>{{$item->order}}</figcaption>
             </figure>
           </article>
         @endforeach
@@ -86,11 +88,43 @@
        });
         
         function getBetween(){
-           return (parseFloat($(ui.item).prev('article').attr('order')) + parseFloat($(ui.item).next('article').attr('order'))) / 2 
+          var beforeItemOrder =  isNaN(parseFloat($(ui.item).prev('article').attr('order'))) ? 0 : parseFloat($(ui.item).prev('article').attr('order'));
+          var afterItemOrder =  isNaN(parseFloat($(ui.item).next('article').attr('order'))) ? parseFloat($(ui.item).prev('article').attr('order')) + 1 : parseFloat($(ui.item).next('article').attr('order'));
+          console.log(beforeItemOrder);
+          console.log(afterItemOrder);
+          var newItemOrder = (beforeItemOrder + afterItemOrder) / 2;
+          
+          return newItemOrder;
         }
       },
     });
     $( "#sortable" ).disableSelection();
+
+    //DELETE
+    $(".delete").click(function (){
+      if(confirm("desea borrar el item")){
+        $( "#sortable" ).sortable( "disable" );
+        var selectedItem = $(this).parent().parent();
+
+        data = {
+          id: selectedItem.attr("idItem"),
+          _token: "{{ csrf_token() }}"
+        }
+
+        $.ajax({
+          url: '/item',
+          type: 'DELETE',
+          data: data,
+          success: function(response) {
+            selectedItem.remove();
+            //enable sortable again after save
+            $("#sortable").sortable("enable");
+          }
+       });
+      }
+    });
+
+
   });
   </script>
 </html>
