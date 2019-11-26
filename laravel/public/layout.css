@@ -137,3 +137,9 @@ input, textarea, select{font-size:12px; font-family:Georgia,"Times New Roman",Ti
 
 #footer{padding:20px 0;}
 #footer p{margin:0; padding:0;}
+
+label{font-size:15px; color:black;}
+
+.delete {position: absolute; background: red; color: white; top: 17px; right: -25px; }
+
+figure { padding: 15px; margin: 20px; overflow: visible; position: relative;}

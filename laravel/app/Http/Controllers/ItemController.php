@@ -15,33 +15,83 @@ class ItemController extends Controller
     {
 
     }
+
     /**
-     * Show the application dashboard.
+     * Get and return all the items in order 
      *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @return Array
      */
     public function index()
     {
 
-/*         $item = new Item;
-        $item->image = 'url8';
-        $item->text = 'tetextost8';
-        $item->order = 8;
-        $item->save();
-exit() */;
+        //Return all the items in order
         $items = Item::orderBy('order', 'asc')->get();
 
         return view('item', ['items' => $items]);
     }
 
-
+    /**
+     * Update order from item 
+     * 
+     *@param  \Illuminate\Http\Request  $request
+     * @return String
+     */
     public function update(Request $request)
     {
 
-        $data['order'] = $request->order;
+        $data['order'] = (float) $request->order;
         $id = $request->id;
         $items = Item::where('_id', $id)->update($data);
 
         return $request->id;
+    }
+
+    /**
+     * Create new item 
+     * 
+     * @param  \Illuminate\Http\Request  $request
+     * @return Array
+     */
+    public function create(Request $request)
+    {
+
+        //check mimes and max weigth
+        request()->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        $imageName = time().'.'.request()->image->getClientOriginalExtension();
+        request()->image->move(public_path('images'), $imageName);
+
+
+        $itemAux = Item::orderBy('order', 'desc')->take(1)->get();
+        
+        if (isset($itemAux[0])){
+            $order = ((float)$itemAux[0]->order) + 1;
+        } else {
+            $order = 1;
+        }
+
+        $item = new Item;
+        $item->image = $imageName;
+        $item->text = $request->text;
+        $item->order = $order;
+        $item->save();
+
+        return view('newitem');
+
+    }
+
+     /**
+     * delete order from item 
+     * 
+     *@param  \Illuminate\Http\Request  $request
+     * @return String
+     */
+    public function delete(Request $request)
+    {
+        Item::destroy($request->id);
+
+        return "true";
     }
 }
