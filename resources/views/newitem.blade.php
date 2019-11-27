@@ -7,11 +7,14 @@
       <strong>{{ $message }}</strong>
   </div>
   @endif
-  @if ($message = Session::get('error'))
-  <div class="alert alert-danger alert-block">
-      <strong>{{ $message }}</strong>
-  </div>
+  @if (count($errors) > 0)
+    @foreach($errors->all() as $error)
+      <div class="alert alert-danger alert-block">
+        {{$error}}<br>
+      </div>
+    @endforeach
   @endif
+
   
   <form action="/item" method="POST" enctype="multipart/form-data">
     @csrf

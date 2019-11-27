@@ -43,7 +43,7 @@ class ItemController extends Controller
         $id = $request->id;
         $items = Item::where('_id', $id)->update($data);
 
-        return back()->with('success','Item actualizado');
+        return $id;
     }
 
     /**
@@ -56,10 +56,20 @@ class ItemController extends Controller
     {
 
         //check mimes and max weigth
-        request()->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
-        
+        $this->validate(
+                $request, 
+                [   
+                    'image'             => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                ],
+                [   
+                    'image.required'    => 'La imagen es requerida.',
+                    'image.mimes'      => 'Los archivos de imagen validos son: jpeg,png,jpg,gif,svg',
+                    'image.max'      => 'El peso máximo es de 2mb',
+                ]
+            );
+
+            exit("testasda");
+
         //generate name and move to public folder
         $imageName = time().'.'.request()->image->getClientOriginalExtension();
         request()->image->move(public_path('images'), $imageName);
