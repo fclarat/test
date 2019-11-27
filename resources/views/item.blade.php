@@ -1,63 +1,22 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-        <link rel="stylesheet" href="{{ asset('layout.css') }}">
+@extends('layouts.index')
 
-        <title>Laravel</title>
-    </head>
-    <body>
-        
-    <div class="wrapper row1">
-  <header id="header" class="clear">
-    <div id="hgroup">
-      <h1><a href="#">Test</a></h1>
-      <h2>Test</h2>
-    </div>
-    <nav>
-      <ul>
-        <li><a href="#">Listado</a></li>
-        <li><a href="{{url('newitem')}}">Agregar</a></li>
-      </ul>
-    </nav>
-  </header>
-</div>
-<div class="wrapper row2">
-  <div id="container" class="clear">
-    <div id="homepage">
-       
-      <section id="sortable" class="clear">
-       
+@section('section')
 
-        {{-- iterate between all the elements, to make the list --}}
-        @foreach ($items as $item)
-          <article class="one_quarter" order="{{$item->order}}" idItem={{$item->id}}>
-            <figure>
-                <button class="delete" >X</button>
-              <img src="{{ asset('images/' . $item->image) }}" width="200" height="150" alt="">
-              <figcaption>{{$item->text}}</figcaption>
-              <figcaption>{{$item->order}}</figcaption>
-            </figure>
-          </article>
-        @endforeach
+  {{-- iterate between all the elements, to make the list --}}
+  @foreach ($items as $item)
+    <article class="one_quarter" order="{{$item->order}}" idItem={{$item->id}}>
+      <figure>
+          <button class="delete" >X</button>
+        <img src="{{ asset('images/' . $item->image) }}" width="200" height="150" alt="">
+        <figcaption>{{$item->text}}</figcaption>
+        <figcaption>{{$item->order}}</figcaption>
+      </figure>
+    </article>
+  @endforeach
 
-      </section>
-    </div>
-</div>
+@endsection
 
-
-<!-- Footer -->
-<div class="wrapper row3">
-  <footer id="footer" class="clear">
-    <p class="fl_left">Copyright &copy; 2018 - All Rights Reserved - <a href="#">Domain Name</a></p>
-    <p class="fl_right">Template by <a target="_blank" href="https://www.os-templates.com/" title="Free Website Templates">OS Templates</a></p>
-  </footer>
-</div>
-</body>
+@section('script')
 <script>
   $( function() {
     $( "#sortable" ).sortable({
@@ -127,4 +86,4 @@
 
   });
   </script>
-</html>
+  @endsection

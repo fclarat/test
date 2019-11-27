@@ -43,7 +43,7 @@ class ItemController extends Controller
         $id = $request->id;
         $items = Item::where('_id', $id)->update($data);
 
-        return $request->id;
+        return back()->with('success','Item actualizado');
     }
 
     /**
@@ -59,13 +59,14 @@ class ItemController extends Controller
         request()->validate([
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
-
+        
+        //generate name and move to public folder
         $imageName = time().'.'.request()->image->getClientOriginalExtension();
         request()->image->move(public_path('images'), $imageName);
 
-
-        $itemAux = Item::orderBy('order', 'desc')->take(1)->get();
         
+        //set order last to the new item
+        $itemAux = Item::orderBy('order', 'desc')->take(1)->get();
         if (isset($itemAux[0])){
             $order = ((float)$itemAux[0]->order) + 1;
         } else {
@@ -78,7 +79,7 @@ class ItemController extends Controller
         $item->order = $order;
         $item->save();
 
-        return view('newitem');
+        return back()->with('success','Item agregado');
 
     }
 

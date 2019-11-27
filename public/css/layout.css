@@ -8,7 +8,7 @@ Licence: <a href="https://www.os-templates.com/template-terms">Website Template 
 
 html{overflow-y:scroll;} /* Forces a scrollbar when the viewport is larger than the websites content - CSS3 */
 
-body{margin:0; padding:0; font-size:13px; font-family:Georgia, "Times New Roman", Times, serif; color:#919191; background-color:#232323;}
+body{margin:0; padding:0; font-size:13px; font-family:Georgia, "Times New Roman", Times, serif; color:#919191; }
 
 .clear:after{content:"."; display:block; height:0; clear:both; visibility:hidden; line-height:0;}
 .clear{display:block; clear:both;}
@@ -135,8 +135,20 @@ input, textarea, select{font-size:12px; font-family:Georgia,"Times New Roman",Ti
 
 /*----------------------------------------------Footer-------------------------------------*/
 
-#footer{padding:20px 0;}
-#footer p{margin:0; padding:0;}
+#footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color:#333333;
+    text-align: center;
+    height: 50px;
+  }
+
+ 
+#footer p{margin: 10px 0;}
+#footer p a{color:#C0BAB6; background-color:#333333;}
+ 
 
 label{font-size:15px; color:black;}
 
