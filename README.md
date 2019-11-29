@@ -5,11 +5,11 @@ pre-requirements: docker & docker-compose installed (https://docs.docker.com/ins
 1) mv .env.example .env
 2) Change .env values
 
-DB_CONNECTION=mongodb
-DB_HOST=mongodb
-DB_PORT=27017
-DB_DATABASE=test
-DB_USERNAME=root
+DB_CONNECTION=mongodb\
+DB_HOST=mongodb\
+DB_PORT=27017\
+DB_DATABASE=test\
+DB_USERNAME=root\
 DB_PASSWORD=root
 
 3) docker-compose up -d
