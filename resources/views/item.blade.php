@@ -37,7 +37,7 @@
         }
 
         $.ajax({
-          url: '/item',
+          url: 'api/item',
           type: 'PUT',
           data: data,
           success: function(response) {
@@ -71,7 +71,7 @@
         }
 
         $.ajax({
-          url: '/item',
+          url: 'api/item',
           type: 'DELETE',
           data: data,
           success: function(response) {

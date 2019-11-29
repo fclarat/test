@@ -15,6 +15,4 @@
 
 Route::get('/', 'ItemController@index')->name('item');
 Route::post('/item', 'ItemController@create')->name('createItem');
-Route::put('/item', 'ItemController@update')->name('updateItem');
-Route::delete('/item', 'ItemController@delete')->name('deleteItem');
 Route::get('/newitem', function () { return view('newitem'); })->name('newitem');
