@@ -23,10 +23,10 @@ DB_PASSWORD=root
 # Use
 
 1) go to http://localhost:8888/ 
-2) Click in the menu add item, both field are requiered. 
+2) Click in the menu "add item", both fields are requiered. 
 3) Repeat step 2 several times.
-4) Go to list in the menu. 
-5) You can drag and drop items or delete its.
+4) Go to "list" in the menu. 
+5) You can drag and drop or delete the items.
 
 
 # Execute Test
