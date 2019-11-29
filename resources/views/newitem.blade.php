@@ -19,10 +19,10 @@
   <form action="/item" method="POST" enctype="multipart/form-data">
     @csrf
     @method('POST')
-    <label for="text">Epígrafe de la imagen</label> <br>
+    <label for="text">Image text*</label> <br>
     <input class="ui-autocomplete-input"type="text" id="text" name="text"> <br><br>
-    <label for="image">Imagen</label> <br>
+    <label for="image">Image*</label> <br>
     <input class="ui-button ui-widget ui-corner-all" type="file" id="image" name="image"><br><br>
-    <button class="ui-button ui-widget ui-corner-all" type="submit">Agregar</button>
+    <button class="ui-button ui-widget ui-corner-all" type="submit">Add</button>
   </form>
 @endsection

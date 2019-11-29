@@ -22,8 +22,8 @@
     </div>
     <nav>
       <ul>
-        <li><a href="{{url('')}}">Listado</a></li>
-        <li><a href="{{url('newitem')}}">Agregar</a></li>
+        <li><a href="{{url('')}}">List</a></li>
+        <li><a href="{{url('newitem')}}">Add item</a></li>
       </ul>
     </nav>
   </header>
