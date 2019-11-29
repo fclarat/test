@@ -63,10 +63,10 @@ class ItemController extends Controller
                     'image'     => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
                 ],
                 [   
-                    'text.required'     => 'El epígrafe es requerido.',
-                    'image.required'    => 'La imagen es requerida.',
-                    'image.mimes'       => 'Los archivos de imagen validos son: jpeg,png,jpg,gif,svg',
-                    'image.max'         => 'El peso máximo es de 2mb',
+                    'text.required'     => 'The image text is required.',
+                    'image.required'    => 'The image is required.',
+                    'image.mimes'       => 'Valid type of files : jpeg,png,jpg,gif,svg',
+                    'image.max'         => 'Max weight 2mb',
                 ]
             );
 
@@ -89,7 +89,7 @@ class ItemController extends Controller
         $item->order = $order;
         $item->save();
 
-        return back()->with('success','Item agregado');
+        return back()->with('success','Item added');
 
     }
 

@@ -9,7 +9,6 @@
           <button class="delete" >X</button>
         <img src="{{ asset('images/' . $item->image) }}" width="200" height="150" alt="">
         <figcaption>{{$item->text}}</figcaption>
-        <figcaption>{{$item->order}}</figcaption>
       </figure>
     </article>
   @endforeach
@@ -20,6 +19,8 @@
 <script>
   $( function() {
     $( "#sortable" ).sortable({
+      
+      //UPDATE ORDER
       update: function( event, ui ) {
         
         //disable the sort until the mongo update
@@ -49,8 +50,6 @@
         function getBetween(){
           var beforeItemOrder =  isNaN(parseFloat($(ui.item).prev('article').attr('order'))) ? 0 : parseFloat($(ui.item).prev('article').attr('order'));
           var afterItemOrder =  isNaN(parseFloat($(ui.item).next('article').attr('order'))) ? parseFloat($(ui.item).prev('article').attr('order')) + 1 : parseFloat($(ui.item).next('article').attr('order'));
-          console.log(beforeItemOrder);
-          console.log(afterItemOrder);
           var newItemOrder = (beforeItemOrder + afterItemOrder) / 2;
           
           return newItemOrder;
@@ -61,7 +60,7 @@
 
     //DELETE
     $(".delete").click(function (){
-      if(confirm("desea borrar el item")){
+      if(confirm("Delete this item?")){
         $( "#sortable" ).sortable( "disable" );
         var selectedItem = $(this).parent().parent();
 
