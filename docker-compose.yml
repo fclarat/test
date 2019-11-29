@@ -15,7 +15,9 @@ services:
     ports:
         - 27017:27017
     volumes:
-        - ./docker/storage/mongodb:/data/db
+        - mongodbtest:/data/db
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: root
+volumes:
+  mongodbtest:
