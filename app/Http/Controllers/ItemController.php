@@ -59,16 +59,16 @@ class ItemController extends Controller
         $this->validate(
                 $request, 
                 [   
-                    'image'             => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                    'text'      => 'required',
+                    'image'     => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
                 ],
                 [   
+                    'text.required'     => 'El epígrafe es requerido.',
                     'image.required'    => 'La imagen es requerida.',
-                    'image.mimes'      => 'Los archivos de imagen validos son: jpeg,png,jpg,gif,svg',
-                    'image.max'      => 'El peso máximo es de 2mb',
+                    'image.mimes'       => 'Los archivos de imagen validos son: jpeg,png,jpg,gif,svg',
+                    'image.max'         => 'El peso máximo es de 2mb',
                 ]
             );
-
-            exit("testasda");
 
         //generate name and move to public folder
         $imageName = time().'.'.request()->image->getClientOriginalExtension();
@@ -103,6 +103,6 @@ class ItemController extends Controller
     {
         Item::destroy($request->id);
 
-        return "true";
+        return $request->id;
     }
 }
